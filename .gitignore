@@ -1,0 +1,5 @@
+applied-ml/
+.DS_Store
+project_data/
+database/
+__pycache__/
