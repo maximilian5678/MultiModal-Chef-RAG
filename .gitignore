@@ -1,5 +1,7 @@
 applied-ml/
 .DS_Store
-project_data/
-database/
+project_data/*
+!project_data/.gitkeep
+database/*
+!database/.gitkeep
 __pycache__/
