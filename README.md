@@ -53,6 +53,13 @@ python -m project.pipeline
 ## RAG Workflow: 
 ![RAG](project_data/RAG_workflow-1.jpg)
 
+## Demo
+<div align="center">
+  <video src="https://github.com/user-attachments/assets/c14e2c1d-e8c3-4520-a4f5-71256b224d11" width="100%" controls muted autoplay loop>
+    Dein Browser unterstützt das Video-Tag nicht.
+  </video>
+</div>
+
 ## Components: ##
 
 1. **UI layer** (found in `project/ui/`)
