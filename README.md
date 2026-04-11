@@ -1,83 +1,76 @@
-# MultiModal-Chef-RAG
+# 🍳 MultiModal-Chef-RAG
 
-## Setup ##
+**MultiModal-Chef-RAG** is an intelligent cooking assistant that bridges the gap between static recipes and visual demonstrations. By leveraging a RAG (Retrieval-Augmented Generation) workflow, the system retrieves recipes from **RecipeNLG** dataset and synchronizes them with precise instructional video segments from **YouCookII** dataset.
 
-Clone the repository and cd one level above the `project/` folder.
+[Features](#-key-features) • [Setup & Installation](#-setup--installation) • [Demo Video](#-demo-video) • [RAG Workflow](#rag-workflow)
 
-## Datasets ##
+---
 
-Download the following datasets and place them in the specified locations:
+## ✨ Key Features
+* **Dual-Stream Retrieval:** Seamlessly connects text-based recipes with corresponding video instruction clips.
+* **Smart Video Sync:** Automatically identifies and plays the specific video segments matching the generated cooking steps.
+* **Interactive UI:** A comprehensive Gradio interface featuring a chat module, synchronized video player, and a system inspection panel.
+* **Resource Monitoring:** Real-time tracking of token usage and system performance.
 
-**RecipeNLG**
+---
 
-- **Download:** [RecipeNLG Dataset](https://www.kaggle.com/datasets/paultimothymooney/recipenlg)
-- **Save in project folder:** `g02-jaeger-reiska/project_data/full_dataset.csv`
+## 🚀 Setup & Installation
 
-**YouCookII**
-
-- **Download:** [YouCookII_downscaled* Dataset](http://youcook2.eecs.umich.edu)
-- **Save in project folder:** `g02-jaeger-reiska/project_data/YouCookII_downscaled/..`
-
-## Preprocessing ##
-
-Before starting the application, run the following preprocessing scripts to generate the required embeddings and FAISS indexes:
-
-**Recipe metadata preprocessing:**
+### 1. Clone the Repository
+Clone the repository and cd into the MultiModal-Chef-RAG `project/` folder.
 ```bash
-python -m project.preprocessing.metadata_preprocessing
+cd MultiModal-Chef-RAG
 ```
 
-**Video preprocessing:**
+### 2. Environment Setup
+It is recommended to use a virtual environment (Python 3.9+).
 ```bash
-python -m project.preprocessing.video_preprocessing
+pip install -r requirements.txt
 ```
 
-## How to start ##
+### 3. Dataset Preparation
+Download the datasets and place them exactly in the following directory structure:
+| Dataset | Source | Target Path |
+| :--- | :--- | :--- |
+| **RecipeNLG** | [Kaggle](https://www.kaggle.com/datasets/paultimothymooney/recipenlg) | `project_data/full_dataset.csv` |
+| **YouCookII** | [YouCook2](http://youcook2.eecs.umich.edu) | `project_data/YouCookII_downscaled/` |
+
+### 4. Preprocessing
+You must generate the FAISS indexes and embeddings before running the application for the first time:
+
+```bash
+# Generate recipe metadata embeddings
+python -m preprocessing.metadata_preprocessing
+# Generate video clip embeddings
+python -m preprocessing.video_preprocessing
+```
+### 5. How to Start
 
 Run one of the following commands:
 
-**With UI (Gradio interface):**
+**Option A: With UI (Gradio Interface)**
 ```bash
-python -m project.main
+python -m main
 ```
 
-**Without UI (CLI pipeline):**
+**Option B: Without UI (CLI Pipeline)**
 ```bash
-python -m project.pipeline
+python -m pipeline
 ```
 
-## Notes ##
-- Please use **light mode** for the interface
-- Video playback is only tested on Chrome; other browsers may have compatibility issues
-
-## RAG Workflow: 
-![RAG](project_data/RAG_workflow-1.jpg)
-
-## Demo
+## 🎥 Demo Video
 <div align="center">
   <video src="https://github.com/user-attachments/assets/c14e2c1d-e8c3-4520-a4f5-71256b224d11" width="100%" controls muted autoplay loop>
-    Dein Browser unterstützt das Video-Tag nicht.
+    Your browser does not support the video tag.
   </video>
 </div>
 
-## Components: ##
 
-1. **UI layer** (found in `project/ui/`)
-    - includes Gradio interface (chat interface for user input, video player for retrieved instruction clips, system inspection panel, total token usage)
-2. **Pipeline** (found in `pipeline.py`)
-    - for coordinating the whole RAG workflow
-3. **Retrieval layer** (found in `project/retrieval/`)
-    - RecipeRetriever:
-        * does similarity search based on user input query and recipe titles
-        * returns top-1 recipe including its metadata
-    - VideoRetriever:
-        * takes cooking steps from the chatbot output
-        * retrieves instruction videos matching cooking steps
-        * returns video paths with start timestamp
-4. **Chatbot layer** (found in `project/chatbot/`)
-    - includes main chatbot interface
-5. **Preprocessing** (found in`project/preprocessing/`)
-    - includes recipe and video clip embeddings
-6. **Config** (found in `config.py`)
-    - centralized configuration that includes paths and different hyperparameters
-  
+<a id="rag-workflow"></a>
+## 🏗️ RAG Workflow
+
+1. **User Query:** User inputs a dish or craving.
+2. **Recipe Retrieval:** `RecipeRetriever` performs a FAISS-based similarity search to find the best-matching recipe.
+3. **LLM Generation:** The chatbot processes metadata to generate clear, structured instructions.
+4. **Video Retrieval:** `VideoRetriever` matches the generated steps to specific timestamped clips.
+5. **Augmentation:** The UI renders the instructions alongside a player synced to the retrieved clips.
