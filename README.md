@@ -10,12 +10,12 @@ Download the following datasets and place them in the specified locations:
 
 **RecipeNLG**
 
-- **Download:** [RecipeNLG Dataset](https://cloud.uni-konstanz.de/index.php/s/oCLybDPTN8sGJ2G)
+- **Download:** [RecipeNLG Dataset](https://www.kaggle.com/datasets/paultimothymooney/recipenlg)
 - **Save in project folder:** `g02-jaeger-reiska/project_data/full_dataset.csv`
 
-**YouCookII_downscaled**
+**YouCookII**
 
-- **Download:** [YouCookII_downscaled* Dataset](https://cloud.uni-konstanz.de/index.php/s/QzpDRiBrQ3Hn34K)
+- **Download:** [YouCookII_downscaled* Dataset](http://youcook2.eecs.umich.edu)
 - **Save in project folder:** `g02-jaeger-reiska/project_data/YouCookII_downscaled/..`
 
 ## Preprocessing ##
