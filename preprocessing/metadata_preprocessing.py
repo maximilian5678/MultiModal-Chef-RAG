@@ -5,8 +5,6 @@ import faiss
 from sentence_transformers import SentenceTransformer
 import config
 
-raise ValueError("We want to stop")
-
 connection = sqlite3.connect(config.DB_PATH)
 cursor = connection.cursor()
 cursor.execute("""
