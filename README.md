@@ -17,7 +17,7 @@
 ## 🚀 Setup & Installation
 
 ### 1. Clone the Repository
-Clone the repository and cd into the MultiModal-Chef-RAG folder.
+Fork the repository and cd into the MultiModal-Chef-RAG folder.
 ```bash
 cd MultiModal-Chef-RAG
 ```
